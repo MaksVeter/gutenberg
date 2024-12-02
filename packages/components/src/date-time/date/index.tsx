@@ -168,6 +168,7 @@ export function DatePicker( {
 						if ( ! isSameMonth( day, viewing ) ) {
 							return null;
 						}
+						day.setHours( 15 );
 						return (
 							<Day
 								key={ day.toString() }
