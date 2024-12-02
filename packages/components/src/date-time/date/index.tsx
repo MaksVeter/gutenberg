@@ -168,7 +168,6 @@ export function DatePicker( {
 						if ( ! isSameMonth( day, viewing ) ) {
 							return null;
 						}
-						day.setHours( 15 );
 						return (
 							<Day
 								key={ day.toString() }
@@ -304,7 +303,8 @@ function Day( {
 		// isFocusAllowed is not a dep as there is no point calling focus() on
 		// an already focused element.
 	}, [ isFocusable ] );
-
+	const shiftedDay = new Date( day );
+	shiftedDay.setHours( 15 );
 	return (
 		<DayButton
 			ref={ ref }
@@ -319,7 +319,7 @@ function Day( {
 			onClick={ onClick }
 			onKeyDown={ onKeyDown }
 		>
-			{ dateI18n( 'j', day, -day.getTimezoneOffset() ) }
+			{ dateI18n( 'j', shiftedDay, -shiftedDay.getTimezoneOffset() ) }
 		</DayButton>
 	);
 }
